@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function getTeams(year, k) {
+            // write your code here
+            // API endpoint template: https://jsonmock.hackerrank.com/api/football_matches?competition=UEFA%20Champions%20League&year=<YEAR>&page=<PAGE_NUMBER>
+            const allData = [];
+                for(let i = 0; i< 13; i++){
+                    fetch(`https://jsonmock.hackerrank.com/api/football_matches?competition=UEFA%20Champions%20League&year=${year}&page=${i}`)
+                    .then(response => response.json())
+                    .then(data => allData.push(data.data.map(ele => ele.team1).concat(data.data.map(ele => ele.team2))));
+                    
+                }
+           
+           
+            console.log(allData)
+            
+                
+                
+        }
+        getTeams(2011, 6)
+    </script>
+</body>
+
+</html>
